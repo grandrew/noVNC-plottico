@@ -249,7 +249,22 @@ pt_saved_time = (new Date()).getTime();
 setInterval(function(){
 if((new Date()).getTime() - pt_saved_time < 5000) return;
 document.getElementById("noVNC_canvas").dispatchEvent(new Event("mousemove"));},1000);
+function clearInt() {
+    document.getElementById("overlay").style.display = "none";
+    clearInterval(window.check_int);
+}
+
+function checkReady() {
+  var iDone = new Image();
+  iDone.onload = clearInt;
+  iDone.onerror = function() {};  
+  var host = "https://"+window.location.hostname;
+  var port = WebUtil.getConfigVar('port', window.location.port);
+  iDone.src = host+":4430/checkReady?port="+port+"&hh="+Math.random();
+}
+window.check_int = setInterval(checkReady, 1000);
         </script>
 
+<div id="overlay" class="overlay"><img class="loading" src="images/loading.gif"/></div>
     </body>
 </html>
