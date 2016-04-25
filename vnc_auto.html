@@ -241,6 +241,14 @@
 
             rfb.connect(host, port, password, path);
         };
+var pt_saved_time = 0;
+document.getElementById("noVNC_canvas").onmousemove = function() {
+pt_saved_time = (new Date()).getTime();
+};
+
+setInterval(function(){
+if((new Date()).getTime() - pt_saved_time < 5000) return;
+document.getElementById("noVNC_canvas").dispatchEvent(new Event("mousemove"));},1000);
         </script>
 
     </body>
