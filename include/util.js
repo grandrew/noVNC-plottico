@@ -217,7 +217,8 @@ Util.init_logging = function (level) {
         case 'warn':
             Util.Warn  = function (msg) { console.warn(msg); };
         case 'error':
-            Util.Error = function (msg) { console.error(msg); setTimeout(function(){location.reload();}, 1000); };
+            Util.Error = function (msg) { console.error(msg); 
+if (window!=window.top) setTimeout(function(){location.reload();}, 1000); };
         case 'none':
             break;
         default:

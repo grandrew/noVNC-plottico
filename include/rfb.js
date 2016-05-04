@@ -37,10 +37,10 @@ var RFB;
 
         // In preference order
         this._encodings = [
-            ['COPYRECT',            0x01 ],
             ['TIGHT',               0x07 ],
             ['TIGHT_PNG',           -260 ],
             ['HEXTILE',             0x05 ],
+            ['COPYRECT',            0x01 ],
             ['RRE',                 0x02 ],
             ['RAW',                 0x00 ],
             ['DesktopSize',         -223 ],

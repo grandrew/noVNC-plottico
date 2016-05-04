@@ -43,6 +43,7 @@
         src='http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed.js'></script>
     -->
         <script src="include/util.js"></script>
+        <script src="include/progressbar.min.js"></script>
 </head>
 
 <body style="margin: 0px;">
@@ -255,6 +256,7 @@ function clearInt() {
 }
 
 function checkReady() {
+if (window==window.top) document.getElementById("overlay").style.display="none";
   var iDone = new Image();
   iDone.onload = clearInt;
   iDone.onerror = function() {};  
@@ -263,8 +265,23 @@ function checkReady() {
   iDone.src = host+":4430/checkReady?port="+port+"&hh="+Math.random();
 }
 window.check_int = setInterval(checkReady, 1000);
-        </script>
 
-<div id="overlay" class="overlay"><img class="loading" src="images/loading.gif"/></div>
+        </script>
+<div id="overlay" class="overlay">
+<div style="z-index: 1000000; position: absolute; top: 0px; width: 100%; height: 8px" id="container"></div>
+<img class="loading" src="images/loading.gif"/></div>
+<script>
+var bar = new ProgressBar.Line("#container", {
+  strokeWidth: 4,
+  easing: 'easeInOut',
+  duration: 60000,
+  color: '#d85344',
+  trailColor: '#eee',
+  trailWidth: 1,
+  svgStyle: {width: '100%', height: '100%'}
+});
+
+bar.animate(1.0);  // Number from 0.0 to 1.0
+</script>
     </body>
 </html>
